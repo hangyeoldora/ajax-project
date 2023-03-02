@@ -16,7 +16,10 @@ public class LoginController extends HttpServlet {
 	RequestDispatcher rd=null;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html; charset=utf-8");
+		resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		resp.setHeader("Access-Control-Allow-Origin", "*");
 		String userID=req.getParameter("userID");
 		String userPW=req.getParameter("userPW");
 		
@@ -33,6 +36,10 @@ public class LoginController extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html; charset=utf-8");
+		resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		resp.setHeader("Access-Control-Allow-Origin", "*");
 		rd=req.getRequestDispatcher("/user/login.jsp");
 		rd.forward(req, resp);
 	}
