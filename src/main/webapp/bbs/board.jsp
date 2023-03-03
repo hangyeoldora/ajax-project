@@ -51,7 +51,18 @@
 	<script type="text/javascript">
 		$(function(){
 			searchFunc();
-			console.log(localStorage.getItem("userID"));
+			$(document).on("click",".detail-link",function(){
+				if(localStorage.getItem("userID")==null || localStorage.getItem("userID")==""){
+					alert('로그인이 필요합니다.');
+					$(this).attr("href","../user/login.jsp");
+				}
+			});
+			$(document).on("click",".board-wrtie-btn",function(){
+				if(localStorage.getItem("userID")==null || localStorage.getItem("userID")==""){
+					alert('로그인이 필요합니다.');
+					$(this).attr("href","../user/login.jsp");
+				}
+			});
 		});
 		function searchFunc(){
 			var searchText=$('#inputBbsTitle').val();
@@ -76,7 +87,7 @@
 			if(items.length!=0){
 				items.map((item,i)=>{
 					var li=$('<li/>').html(
-						"<a href=\"./detail.do?bbsIdx="+item.bbsIdx+"\">"
+						"<a class=\"detail-link\" href=\"./detail.do?bbsIdx="+item.bbsIdx+"\">"
 						+"<p class=\"board-date\">"+item.bbsDate+"</p>"
 						+"<h3>"+item.bbsTitle+"</h3>"
 						+"<div class=\"user-info-sec\">"
